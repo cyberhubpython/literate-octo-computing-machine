@@ -1,1 +1,4 @@
-countries = ['Uzbekistan', 'Russia'];
+
+currentCountry = 'Uzbekistan'
+
+countries = [ currentCountry, 'Russia'];
