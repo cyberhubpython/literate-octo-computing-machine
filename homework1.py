@@ -1,4 +1,4 @@
-cities = ["Japan","Korea","Canada","China","United States","Austria"]
+countries = ["Japan","Korea","Canada","China","United States","Austria"]
 print(cities)
 print(sorted(cities))
 print(cities)
