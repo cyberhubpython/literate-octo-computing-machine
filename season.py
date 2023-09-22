@@ -11,3 +11,10 @@ def season(number):
     print("Obejct not found!")
 n = int(input("Enter the numerous of season (1-12): "))
 season(n) 
+
+# def square(x):
+#    print(int(x)*int(x));
+
+# square(input("Введите число:"));
+
+print(f"ваше удвоенное число было {n*2} !");
