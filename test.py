@@ -1,4 +1,14 @@
-countries=['London','Japan','Russia','America','Uzbekistan']
-print(sorted(countries))
-# countries.sort(reverse=True)
+countries=['Mexico','London','Japan','America','Uzbekistan']
 print(countries)
+
+countries=['Mexico','London','Japan','America','Uzbekistan']
+countries.sort()
+print(countries)
+
+countries=['Mexico','London','Japan','America','Uzbekistan']
+countries.sort(reverse=True)
+print(countries)
+
+countries=['Mexico','London','Japan','America','Uzbekistan']
+print(countries)
+countries.reverse()
