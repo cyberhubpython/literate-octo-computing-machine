@@ -5,4 +5,6 @@ countries = [ currentCountry, 'Russia'];
 
 print(countries)
 
+
+
 print(countries.sort());
