@@ -1,28 +1,17 @@
+from random import randint
 
-# currentCountry = 'Uzbekistan'
-# # my countries list
-# countries = [ currentCountry, 'Russia'];
-
-# print(countries)
-
-# print(countries.sort());
-
-import random
-
-def generate_secret_number():
-    return random.randint(1, 10)
-
+# x = randint(1,10)
+# user_num = 0
+# attempt = 0
 def get_user_guess():
-    return int(input("Введите число: "))
-
+    return int(input("Enter your : "))
 def give_feedback(secret_number, user_guess):
     if secret_number == user_guess:
-        return "Вы угадали!"
+        return "Great, you found it!"
     elif user_guess < secret_number:
-        return "Число больше."
+        return "it is more than this."
     else:
-        return "Число меньше."
-
+        return "it is less than this."
 def main():
     secret_number = generate_secret_number()
     score = 0
@@ -54,5 +43,14 @@ def main():
             exact_answer_count = 2
     print("Ваш результат:", score)
 
-if __name__ == "__main__":
-    main()
+# while True :
+#  print("Guess my number from 1 to 10")
+#  user_num = int(input("Your guess:"))
+#  attempt+=1
+#  if user_num == x:
+#   print("Great, you found it.")
+#   break
+#  elif user_num > x:
+#   print("it is less than this")
+#  elif user_num < x :
+#   print ("it is more than this")
