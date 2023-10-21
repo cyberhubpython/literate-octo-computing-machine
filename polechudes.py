@@ -1,4 +1,16 @@
 import random;
+class Word:
+    def __init__(self, w):
+        self.w = w;
+        self.length = len(w);
+    
+    def __iter__(self):
+        self.count = 0;
+
+    def __next__(self):
+        x = self.w[self.count] if self.w[self.count] in self.guessedLetters else '*';
+        self.count+=1;
+        return x;
 
 class Game:
     words=[
@@ -15,12 +27,17 @@ class Game:
         self.getRandWord();
         print('game is started');
         letterOrWord =  input('скажи букву или слово: ');
-        self.checkLetterOrWord(letterOrWord);
+        if self.checkLetterOrWord(letterOrWord):
+            self.guessedLetters.append(letterOrWord)
+            self.showWord();
+    
 
     def checkLetterOrWord(self, letterOrWord):
         # print(letterOrWord in self.currentWord, self.currentWord, letterOrWord);
         if  letterOrWord in self.currentWord:
             print(f'откройте букву {letterOrWord}');
+            return True;
+        return False;
     
     def getRandWord(self) :
         self.currentWord = Game.words[random.randrange(0, len(Game.words))]
