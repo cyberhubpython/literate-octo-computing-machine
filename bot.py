@@ -3,12 +3,11 @@ import telegram
 from polechudes_kiixen import FOD
 
 async def main():
-    bot = telegram.Bot("6935608022:AAGm6fOmDBn0lDp8aBYPi_l9bwre3ceAA-8");
+    bot = telegram.Bot("6935433814:AAHAe5BYlLzNqkvBVcxzcGCFfWtZLKapGKY");
     update = None;
     
     game= FOD()
     game.start()
-    
     
     while True:
         async with bot:
@@ -20,20 +19,17 @@ async def main():
                 message: telegram.Message = update.message
                 print(message.text.lower())
                 
-                game.showHiddenWord()
+                await bot.sendMessage(chat_id= message.chat.id, text=game.showHiddenWord())
                 while "*" in game.hiddenWord != True : 
                     
                     await bot.sendMessage(chat_id = message.chat.id, text= "Enter your Letter or Word:")
                     update = (await bot.getUpdates(offset=(update.update_id + 1) if update != None else None, limit =1, timeout=60))[0];
                     letterOrWord = update.message.text
-                    if letterOrWord in game.selectedWord:
-            
-                        game.guessedLetters.extend([l for l in letterOrWord])
-                        await bot.sendMessage(chat_id= message.chat.id, text= "You have guessed a letter/word")
-                    else :
-                        await bot.sendMessage(chat_id=message.chat.id,text= "Try again you haven't guessed")
                     
-
+                    text = game.letterOrWordAsked(letterOrWord);
+                    
+                                        
+                    await bot.sendMessage(chat_id = message.chat.id, text=text)
                     await bot.sendMessage(chat_id = message.chat.id, text=game.showHiddenWord())
 
                 await bot.sendMessage(chat_id= message.chat.id, text= "Congrats,you have rocked it!")
