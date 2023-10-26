@@ -3,7 +3,7 @@ import telegram
 from polechudes_kiixen import FOD
 
 async def main():
-    bot = telegram.Bot("6935608022:AAGm6fOmDBn0lDp8aBYPi_l9bwre3ceAA-8");
+    bot = telegram.Bot("6935433814:AAHAe5BYlLzNqkvBVcxzcGCFfWtZLKapGKY");
     update = None;
     
     game= FOD()

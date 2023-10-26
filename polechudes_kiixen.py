@@ -6,15 +6,20 @@ class FOD:
         self.selectedWord= random.choice(words)
         # print(self.selectedWord)
 
+        # print(self.showHiddenWord());
+        # while "*" in self.hiddenWord != True : 
+        #     self.askLetterOrWord();
+        #     self.showHiddenWord();
+        # print('congrats');
        
-    def askLetterOrWord(self, ):
-        letterOrWord= input("Enter your Letter or Word: ")
+    def letterOrWordAsked(self, letterOrWord):
+       
         if letterOrWord in self.selectedWord:
            
             self.guessedLetters.extend([l for l in letterOrWord])
-            print("You have guessed a letter/word")
+            return "You have guessed a letter/word"
         else :
-            print("Try again you haven't guessed")
+            return "Try again you haven't guessed"
 
     
     def showHiddenWord(self):
