@@ -8,8 +8,10 @@ async def main():
     
     game= FOD()
     game.start()
-    
-    
+    thisdict : dict[int, FOD]={ 
+      
+    }
+
     while True:
         async with bot:
             # print(await bot.get_me())
@@ -18,25 +20,39 @@ async def main():
                 print(update.update_id);
             
                 message: telegram.Message = update.message
+                if (message.chat.id in thisdict) == False:
+                    thisdict[message.chat.id] = FOD();
+                    thisdict[message.chat.id].start();
+                    await bot.sendMessage(chat_id= message.chat.id,text="Game started. ")
+                    await bot.sendMessage(chat_id= message.chat.id,text= thisdict[message.chat.id].showHiddenWord())
+                    await bot.sendMessage(chat_id = message.chat.id, text= "Enter your Letter or Word:")
+                    
+                    continue;
                 print(message.text.lower())
                 
-                game.showHiddenWord()
-                while "*" in game.hiddenWord != True : 
+                thisdict[message.chat.id].showHiddenWord()
+
+                if ("*" in thisdict[message.chat.id].hiddenWord ) == True : 
                     
-                    await bot.sendMessage(chat_id = message.chat.id, text= "Enter your Letter or Word:")
-                    update = (await bot.getUpdates(offset=(update.update_id + 1) if update != None else None, limit =1, timeout=60))[0];
+                    
                     letterOrWord = update.message.text
-                    if letterOrWord in game.selectedWord:
+                    if letterOrWord in thisdict[message.chat.id].selectedWord:
             
-                        game.guessedLetters.extend([l for l in letterOrWord])
+                        thisdict[message.chat.id].guessedLetters.extend([l for l in letterOrWord])
                         await bot.sendMessage(chat_id= message.chat.id, text= "You have guessed a letter/word")
                     else :
                         await bot.sendMessage(chat_id=message.chat.id,text= "Try again you haven't guessed")
                     
 
-                    await bot.sendMessage(chat_id = message.chat.id, text=game.showHiddenWord())
+                    await bot.sendMessage(chat_id = message.chat.id, text=thisdict[message.chat.id].showHiddenWord())
 
-                await bot.sendMessage(chat_id= message.chat.id, text= "Congrats,you have rocked it!")
+
+
+                if ("*" in thisdict[message.chat.id].hiddenWord) != True:
+                    await bot.sendMessage(chat_id= message.chat.id, text= "Congrats,you have rocked it!")
+                else:
+                    await bot.sendMessage(chat_id = message.chat.id, text= "Enter your Letter or Word:")
+
             except Exception as error:
                 print('сообщений не было, идем в след цикл', error);
 
@@ -52,3 +68,6 @@ print(__name__);
 
 if __name__ == '__main__':
     asyncio.run(main())
+
+
+    
