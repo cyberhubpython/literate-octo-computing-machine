@@ -28,6 +28,7 @@ Greetings^^
 /done - removes data 
 /clear - remove all
            """)
+    tasks[message.chat.id] = [];
     
 
 @dp.message(Command("create"))
@@ -40,13 +41,14 @@ async def command_create_handler(message:Message):
         print(tasks)
         await message.answer("your task successfully added to the list.")
     except Exception as e:
-        print(e.with_traceback());
+        # print(e.with_traceback());
         await message.answer("enter title amd priority using command formatted as: /create title-priority")
 
 @dp.message(Command("all"))
 async def command_all_handler(message:Message): 
     # tasksStr = '\n'.join(map(lambda task:  f"{task.title} - {task.priority}",tasks[message.chat.id]));
     tasksStr = "all tasks: \n"
+    tasks[message.chat.id] = tasks[message.chat.id] if  message.chat.id in  tasks else [];
     for task in tasks[message.chat.id]:
         tasksStr += f'\n{tasks[message.chat.id].index(task)+1}. {task.title} : {task.priority};'
     await message.answer(tasksStr)
@@ -54,6 +56,7 @@ async def command_all_handler(message:Message):
 @dp.message(Command("done"))
 async def command_done_handler(message:Message): 
     removeIds= message.text.replace("/done", "").split(",")
+    removeIds.reverse()
     for id in removeIds:
         tasks[message.chat.id].remove(tasks[message.chat.id][int(id)-1])
     await message.answer("all has been removed")
