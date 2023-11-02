@@ -30,8 +30,8 @@ async def command_start_handler(message: Message):
 welcome!
 my commands:
 /create - for create new task with format: {title}-{priority}
-/all -
-/done - 
+/all {filter} -
+/done id - 
 /clear -
 """);
 
