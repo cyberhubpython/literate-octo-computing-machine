@@ -46,7 +46,9 @@ async def start(message: Message):
     await message.answer(msgText);
 
 
-
+detailsMsgTexts = {roles[0]: "{}, napishi /delete [id] chtobi udalit",
+                   roles[1]: "{}, napishi /publish [id] dlya togo chtobi reklamit\'",
+                   roles[2]: "{}, eta komanda tebe ne dostupna"}
 
 @dp.message(Command('details'))
 async def deteails(message: Message):
@@ -60,12 +62,9 @@ async def deteails(message: Message):
         return await message.answer('ty eshye ne proshel proverku');
 
 
-    if user.role == roles[0] :        
-        await message.reply(f'{user.name}, napishi /delete [id] chtobi udalit');
-    elif user.role == roles[1]:
-        await message.reply(f'{user.name}, napishi /publish [id] dlya togo chtobi reklamit\'')
-    else:
-        await message.reply(f'{user.name}, eta komanda tebe ne dostupna')
+    
+    await message.reply(detailsMsgTexts[user.role].format(user.fullname));
+
         # match user.role:
         #     case "admin":
         #         await message.reply('napishi /delete {id} chtobi udalit');
