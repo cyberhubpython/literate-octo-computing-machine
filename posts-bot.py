@@ -20,7 +20,7 @@ class User:
 
 
 users :dict[int, User] = {
-    795034428: User(795034428, "Sasha", roles[0],),
+    # 795034428: User(795034428, "Sasha", roles[0],),
     995189551: User(995189551, 'Саша', roles[1], isApproved= True)
 }
 posts = {
@@ -46,7 +46,7 @@ async def start(message: Message):
     await message.answer(msgText);
 
 
-
+detailsMsgTexts = {}
 
 @dp.message(Command('details'))
 async def deteails(message: Message):
@@ -61,7 +61,7 @@ async def deteails(message: Message):
 
 
     if user.role == roles[0] :        
-        await message.reply(f'{user.name}, napishi /delete [id] chtobi udalit');
+        await message.reply('{name}, napishi /delete [id] chtobi udalit');
     elif user.role == roles[1]:
         await message.reply(f'{user.name}, napishi /publish [id] dlya togo chtobi reklamit\'')
     else:
