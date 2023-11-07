@@ -6,6 +6,10 @@ RPS = {
     "S": "Scissors"
 }
 
+player = {"R": 0, "P": 1, "S": 2}
+
+compDict = {"R": 2,"P": 0, "S": 1}
+
 def users_move():
     users_choice = input("Please type down on of the following (R, P, or S): ")
     while users_choice not in RPS.keys():
