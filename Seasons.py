@@ -9,6 +9,9 @@ def month(mn) -> str:
 def days(mn) -> int:
     return [31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30][mn%12]
 
+def detail(mn):
+    pass
+
 print(month(5))
 print(season(12))
 print(days(3))
